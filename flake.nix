@@ -231,6 +231,7 @@
         ./galoisd/galoisd.nix
         ./unionvisor/unionvisor.nix
         ./voyager/voyager.nix
+        ./mpc/mpc.nix
         ./lib/ics23/ics23.nix
         ./lib/ssz/ssz.nix
         ./lib/unionlabs/unionlabs.nix
@@ -321,7 +322,7 @@
             last = pkgs.lib.lists.last complete;
           };
 
-          goPkgs = import inputs.nixpkgs-go { inherit system; };
+          goPkgs = import inputs.nixpkgs-go { inherit system; overlays = [ inputs.rust-overlay.overlays.default ]; };
           unstablePkgs = import inputs.nixpkgs-unstable { inherit system; };
         in
         {
@@ -560,6 +561,7 @@
               self'.packages.tdc
               self'.packages.voy-send-msg
               yq
+              gdb
             ]) ++ (with unstablePkgs; [
               wasm-tools
               bun # for running TypeScript files on the fly
