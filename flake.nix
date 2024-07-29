@@ -562,6 +562,7 @@
               self'.packages.voy-send-msg
               yq
               gdb
+              typescript
             ]) ++ (with unstablePkgs; [
               wasm-tools
               bun # for running TypeScript files on the fly
