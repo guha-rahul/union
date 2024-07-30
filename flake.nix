@@ -322,7 +322,7 @@
             last = pkgs.lib.lists.last complete;
           };
 
-          goPkgs = import inputs.nixpkgs-go { inherit system; overlays = [ inputs.rust-overlay.overlays.default ]; };
+          goPkgs = import inputs.nixpkgs-go { inherit system; };
           unstablePkgs = import inputs.nixpkgs-unstable { inherit system; };
         in
         {
