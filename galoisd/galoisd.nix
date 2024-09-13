@@ -30,12 +30,7 @@
         meta = { mainProgram = "galoisd"; };
         tags = [ "binary" ];
       } // (if pkgs.stdenv.isLinux then {
-        nativeBuildInputs = [ pkgs.musl ];
         CGO_ENABLED = 0;
-        ldflags = [
-          "-linkmode external"
-          "-extldflags '-static -L${pkgs.musl}/lib -s -w'"
-        ];
       } else
         { }));
 
