@@ -7644,6 +7644,8 @@ dependencies = [
  "quote",
  "syn 2.0.77",
  "tokio",
+ "tracing",
+ "tracing-subscriber",
 ]
 
 [[package]]
