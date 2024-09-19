@@ -8321,6 +8321,7 @@ dependencies = [
  "base64 0.21.7",
  "clap 4.5.4",
  "crossterm",
+ "futures-util",
  "hex",
  "http-body-util",
  "httpdate",
