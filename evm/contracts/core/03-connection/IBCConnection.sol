@@ -40,11 +40,9 @@ abstract contract IBCConnectionImpl is IBCStore, IIBCConnection {
      * @dev connectionOpenInit initialises a connection attempt on chain A. The generated connection identifier
      * is returned.
      */
-    function connectionOpenInit(IBCMsgs.MsgConnectionOpenInit calldata msg_)
-        external
-        override
-        returns (uint32)
-    {
+    function connectionOpenInit(
+        IBCMsgs.MsgConnectionOpenInit calldata msg_
+    ) external override returns (uint32) {
         uint32 connectionId = generateConnectionIdentifier();
         IBCConnection storage connection = connections[connectionId];
         connection.clientId = msg_.clientId;
@@ -61,11 +59,9 @@ abstract contract IBCConnectionImpl is IBCStore, IIBCConnection {
      * @dev connectionOpenTry relays notice of a connection attempt on chain A to chain B (this
      * code is executed on chain B).
      */
-    function connectionOpenTry(IBCMsgs.MsgConnectionOpenTry calldata msg_)
-        external
-        override
-        returns (uint32)
-    {
+    function connectionOpenTry(
+        IBCMsgs.MsgConnectionOpenTry calldata msg_
+    ) external override returns (uint32) {
         uint32 connectionId = generateConnectionIdentifier();
         IBCConnection storage connection = connections[connectionId];
         connection.clientId = msg_.clientId;
@@ -105,10 +101,9 @@ abstract contract IBCConnectionImpl is IBCStore, IIBCConnection {
      * @dev connectionOpenAck relays acceptance of a connection open attempt from chain B back
      * to chain A (this code is executed on chain A).
      */
-    function connectionOpenAck(IBCMsgs.MsgConnectionOpenAck calldata msg_)
-        external
-        override
-    {
+    function connectionOpenAck(
+        IBCMsgs.MsgConnectionOpenAck calldata msg_
+    ) external override {
         IBCConnection storage connection = connections[msg_.connectionId];
         if (connection.state != IBCConnectionState.Init) {
             revert IBCConnectionLib.ErrInvalidConnectionState();
@@ -189,19 +184,15 @@ abstract contract IBCConnectionImpl is IBCStore, IIBCConnection {
         );
     }
 
-    function encodeConnection(IBCConnection memory connection)
-        internal
-        pure
-        returns (bytes32)
-    {
+    function encodeConnection(
+        IBCConnection memory connection
+    ) internal pure returns (bytes32) {
         return keccak256(abi.encode(connection));
     }
 
-    function encodeConnectionStorage(IBCConnection storage connection)
-        internal
-        pure
-        returns (bytes32)
-    {
+    function encodeConnectionStorage(
+        IBCConnection storage connection
+    ) internal pure returns (bytes32) {
         return keccak256(abi.encode(connection));
     }
 
