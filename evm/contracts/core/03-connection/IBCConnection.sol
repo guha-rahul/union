@@ -72,8 +72,7 @@ abstract contract IBCConnectionImpl is IBCStore, IIBCConnection {
             state: IBCConnectionState.Init,
             counterparty: IBCConnectionCounterparty({
                 clientId: msg_.clientId,
-                connectionId: 0,
-                merklePrefix: COMMITMENT_PREFIX
+                connectionId: 0
             })
         });
         if (
@@ -111,8 +110,7 @@ abstract contract IBCConnectionImpl is IBCStore, IIBCConnection {
         IBCConnectionCounterparty memory expectedCounterparty =
         IBCConnectionCounterparty({
             clientId: connection.clientId,
-            connectionId: msg_.connectionId,
-            merklePrefix: COMMITMENT_PREFIX
+            connectionId: msg_.connectionId
         });
         IBCConnection memory expectedConnection = IBCConnection({
             clientId: connection.counterparty.clientId,
@@ -155,8 +153,7 @@ abstract contract IBCConnectionImpl is IBCStore, IIBCConnection {
         IBCConnectionCounterparty memory expectedCounterparty =
         IBCConnectionCounterparty({
             clientId: connection.clientId,
-            connectionId: msg_.connectionId,
-            merklePrefix: COMMITMENT_PREFIX
+            connectionId: msg_.connectionId
         });
         IBCConnection memory expectedConnection = IBCConnection({
             clientId: connection.counterparty.clientId,
@@ -215,7 +212,6 @@ abstract contract IBCConnectionImpl is IBCStore, IIBCConnection {
             connection.clientId,
             height,
             proof,
-            abi.encodePacked(connection.counterparty.merklePrefix),
             abi.encodePacked(
                 IBCCommitment.connectionCommitmentKey(connectionId)
             ),
